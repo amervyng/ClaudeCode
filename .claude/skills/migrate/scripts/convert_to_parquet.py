@@ -79,11 +79,11 @@ def convert_csv_to_parquet(
             # Save as parquet
             df.to_parquet(parquet_path, engine="pyarrow", index=False)
             
-            print(f"  ✓ {csv_file.name} -> {parquet_filename}")
+            print(f"  [OK] {csv_file.name} -> {parquet_filename}")
             print(f"    Shape: {df.shape} | Size: {parquet_path.stat().st_size / 1024:.2f} KB")
-            
+
         except Exception as e:
-            print(f"  ✗ Error converting {csv_file.name}: {str(e)}")
+            print(f"  [ERROR] Error converting {csv_file.name}: {str(e)}")
 
 
 def main():
@@ -106,13 +106,13 @@ def main():
         convert_csv_to_parquet(latest_folder_path, output_base, latest_folder_name)
         
         print("\n" + "=" * 70)
-        print("✓ Conversion completed successfully!")
+        print("[SUCCESS] Conversion completed successfully!")
         print("=" * 70)
-        
+
     except FileNotFoundError as e:
-        print(f"\n✗ Error: {str(e)}")
+        print(f"\n[ERROR] Error: {str(e)}")
     except Exception as e:
-        print(f"\n✗ Unexpected error: {str(e)}")
+        print(f"\n[ERROR] Unexpected error: {str(e)}")
 
 
 if __name__ == "__main__":
